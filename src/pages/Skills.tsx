@@ -11,7 +11,7 @@ import {
   GitBranch,
   Box,
   Cloud,
-  Tool,
+  Wrench,
   Monitor
 } from 'lucide-react';
 
@@ -41,12 +41,12 @@ const Skills = () => {
   const otherSkills = [
     { name: 'Git/GitHub', level: 5, color: 'green', icon: <GitBranch /> },
     { name: 'Docker', level: 4, color: 'green', icon: <Box /> },
-    { name: 'CI/CD', level: 4, color: 'green', icon: <Tool /> },
+    { name: 'CI/CD', level: 4, color: 'green', icon: <Wrench /> },
     { name: 'Agile/Scrum', level: 4, color: 'green', icon: <Terminal /> },
     { name: 'System Design', level: 3, color: 'green', icon: <Monitor /> },
     { name: 'REST APIs', level: 5, color: 'green', icon: <Server /> },
     { name: 'GraphQL', level: 3, color: 'green', icon: <Database /> },
-    { name: 'Performance Optimization', level: 4, color: 'green', icon: <Tool /> },
+    { name: 'Performance Optimization', level: 4, color: 'green', icon: <Wrench /> },
   ];
 
   return (
@@ -130,7 +130,7 @@ const Skills = () => {
             >
               <div className="flex items-center mb-6">
                 <div className="h-10 w-10 bg-green-100 text-green-600 rounded-full flex items-center justify-center mr-3">
-                  <Tool size={20} />
+                  <Wrench size={20} />
                 </div>
                 <h2 className="text-2xl font-bold">Tools & Other Skills</h2>
               </div>
