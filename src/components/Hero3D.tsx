@@ -8,7 +8,7 @@ const Hero3D = () => {
   const rendererRef = useRef<THREE.WebGLRenderer | null>(null);
   const sceneRef = useRef<THREE.Scene | null>(null);
   const cameraRef = useRef<THREE.PerspectiveCamera | null>(null);
-  const nodesRef = useRef<THREE.Mesh[]>([]);
+  const nodesRef = useRef<Array<THREE.Mesh & { userData: { rotation: any; oscillation: any } }>>([]);
   const connectionsRef = useRef<THREE.Line[]>([]);
   const frameIdRef = useRef<number | null>(null);
 
@@ -120,22 +120,23 @@ const Hero3D = () => {
                 const element = new THREE.Mesh(geometry, material);
                 element.position.copy(position);
                 
-                // Add random rotation and movement
-                (element as any).rotation = {
-                  x: Math.random() * 0.01,
-                  y: Math.random() * 0.01,
-                  z: Math.random() * 0.01
-                };
-                
-                (element as any).oscillation = {
-                  x: Math.random() * 0.02 - 0.01,
-                  y: Math.random() * 0.02 - 0.01,
-                  z: Math.random() * 0.02 - 0.01,
-                  phase: Math.random() * Math.PI * 2
+                // Store rotation data in userData instead of directly on the element
+                element.userData = {
+                  rotation: {
+                    x: Math.random() * 0.01,
+                    y: Math.random() * 0.01,
+                    z: Math.random() * 0.01
+                  },
+                  oscillation: {
+                    x: Math.random() * 0.02 - 0.01,
+                    y: Math.random() * 0.02 - 0.01,
+                    z: Math.random() * 0.02 - 0.01,
+                    phase: Math.random() * Math.PI * 2
+                  }
                 };
                 
                 scene.add(element);
-                nodesRef.current.push(element);
+                nodesRef.current.push(element as THREE.Mesh & { userData: { rotation: any; oscillation: any } });
                 grid.push({ element, position: position.clone() });
               }
             }
@@ -168,8 +169,8 @@ const Hero3D = () => {
             scene.add(line);
             connectionsRef.current.push(line);
             
-            // Store connection information
-            (line as any).connects = { a: a.element, b: b.element };
+            // Store connection information in userData
+            line.userData = { connects: { a: a.element, b: b.element } };
           }
         }
       }
@@ -183,13 +184,14 @@ const Hero3D = () => {
       
       // Animate tech elements
       nodesRef.current.forEach(element => {
-        // Rotate each element
-        element.rotation.x += (element as any).rotation.x;
-        element.rotation.y += (element as any).rotation.y;
-        element.rotation.z += (element as any).rotation.z;
+        // Rotate each element using the values stored in userData
+        const rotData = element.userData.rotation;
+        element.rotation.x += rotData.x;
+        element.rotation.y += rotData.y;
+        element.rotation.z += rotData.z;
         
-        // Add oscillating movement
-        const osc = (element as any).oscillation;
+        // Add oscillating movement using the values stored in userData
+        const osc = element.userData.oscillation;
         element.position.x += Math.sin(time + osc.phase) * osc.x;
         element.position.y += Math.cos(time + osc.phase) * osc.y;
         element.position.z += Math.sin(time + osc.phase * 2) * osc.z;
@@ -197,7 +199,7 @@ const Hero3D = () => {
       
       // Update connections
       connectionsRef.current.forEach(line => {
-        const { a, b } = (line as any).connects;
+        const { a, b } = line.userData.connects;
         const lineGeometry = new THREE.BufferGeometry().setFromPoints([
           a.position,
           b.position
