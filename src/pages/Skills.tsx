@@ -16,37 +16,40 @@ import {
 } from 'lucide-react';
 
 const Skills = () => {
+  // Define the color type to match what SkillTag expects
+  type SkillColor = 'blue' | 'green' | 'purple' | 'amber';
+  
   const frontendSkills = [
-    { name: 'React', level: 5, color: 'blue' as const, icon: <Code /> },
-    { name: 'TypeScript', level: 5, color: 'blue' as const, icon: <Code /> },
-    { name: 'JavaScript', level: 5, color: 'blue' as const, icon: <Code /> },
-    { name: 'HTML5/CSS3', level: 5, color: 'blue' as const, icon: <Layout /> },
-    { name: 'Redux', level: 4, color: 'blue' as const, icon: <Box /> },
-    { name: 'Tailwind CSS', level: 4, color: 'blue' as const, icon: <Layout /> },
-    { name: 'Next.js', level: 4, color: 'blue' as const, icon: <Code /> },
-    { name: 'Jest/Testing Library', level: 3, color: 'blue' as const, icon: <Terminal /> },
+    { name: 'React', level: 5, color: 'blue' as SkillColor, icon: <Code /> },
+    { name: 'TypeScript', level: 5, color: 'blue' as SkillColor, icon: <Code /> },
+    { name: 'JavaScript', level: 5, color: 'blue' as SkillColor, icon: <Code /> },
+    { name: 'HTML5/CSS3', level: 5, color: 'blue' as SkillColor, icon: <Layout /> },
+    { name: 'Redux', level: 4, color: 'blue' as SkillColor, icon: <Box /> },
+    { name: 'Tailwind CSS', level: 4, color: 'blue' as SkillColor, icon: <Layout /> },
+    { name: 'Next.js', level: 4, color: 'blue' as SkillColor, icon: <Code /> },
+    { name: 'Jest/Testing Library', level: 3, color: 'blue' as SkillColor, icon: <Terminal /> },
   ];
 
   const backendSkills = [
-    { name: 'C#', level: 5, color: 'purple' as const, icon: <Code /> },
-    { name: '.NET Core', level: 5, color: 'purple' as const, icon: <Server /> },
-    { name: 'ASP.NET MVC', level: 5, color: 'purple' as const, icon: <Server /> },
-    { name: 'Entity Framework', level: 4, color: 'purple' as const, icon: <Database /> },
-    { name: 'Web API', level: 4, color: 'purple' as const, icon: <Server /> },
-    { name: 'SQL Server', level: 4, color: 'purple' as const, icon: <Database /> },
-    { name: 'Azure', level: 3, color: 'purple' as const, icon: <Cloud /> },
-    { name: 'Microservices', level: 3, color: 'purple' as const, icon: <Box /> },
+    { name: 'C#', level: 5, color: 'purple' as SkillColor, icon: <Code /> },
+    { name: '.NET Core', level: 5, color: 'purple' as SkillColor, icon: <Server /> },
+    { name: 'ASP.NET MVC', level: 5, color: 'purple' as SkillColor, icon: <Server /> },
+    { name: 'Entity Framework', level: 4, color: 'purple' as SkillColor, icon: <Database /> },
+    { name: 'Web API', level: 4, color: 'purple' as SkillColor, icon: <Server /> },
+    { name: 'SQL Server', level: 4, color: 'purple' as SkillColor, icon: <Database /> },
+    { name: 'Azure', level: 3, color: 'purple' as SkillColor, icon: <Cloud /> },
+    { name: 'Microservices', level: 3, color: 'purple' as SkillColor, icon: <Box /> },
   ];
 
   const otherSkills = [
-    { name: 'Git/GitHub', level: 5, color: 'green' as const, icon: <GitBranch /> },
-    { name: 'Docker', level: 4, color: 'green' as const, icon: <Box /> },
-    { name: 'CI/CD', level: 4, color: 'green' as const, icon: <Wrench /> },
-    { name: 'Agile/Scrum', level: 4, color: 'green' as const, icon: <Terminal /> },
-    { name: 'System Design', level: 3, color: 'green' as const, icon: <Monitor /> },
-    { name: 'REST APIs', level: 5, color: 'green' as const, icon: <Server /> },
-    { name: 'GraphQL', level: 3, color: 'green' as const, icon: <Database /> },
-    { name: 'Performance Optimization', level: 4, color: 'green' as const, icon: <Wrench /> },
+    { name: 'Git/GitHub', level: 5, color: 'green' as SkillColor, icon: <GitBranch /> },
+    { name: 'Docker', level: 4, color: 'green' as SkillColor, icon: <Box /> },
+    { name: 'CI/CD', level: 4, color: 'green' as SkillColor, icon: <Wrench /> },
+    { name: 'Agile/Scrum', level: 4, color: 'green' as SkillColor, icon: <Terminal /> },
+    { name: 'System Design', level: 3, color: 'green' as SkillColor, icon: <Monitor /> },
+    { name: 'REST APIs', level: 5, color: 'green' as SkillColor, icon: <Server /> },
+    { name: 'GraphQL', level: 3, color: 'green' as SkillColor, icon: <Database /> },
+    { name: 'Performance Optimization', level: 4, color: 'green' as SkillColor, icon: <Wrench /> },
   ];
 
   return (
