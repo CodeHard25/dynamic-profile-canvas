@@ -1,5 +1,5 @@
 
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { ArrowRight, Code, Database, Server } from 'lucide-react';
@@ -7,9 +7,36 @@ import Hero3D from '@/components/Hero3D';
 import { Button } from '@/components/ui/button';
 
 const Index = () => {
+  const [showHero3D, setShowHero3D] = useState(true);
+  
+  useEffect(() => {
+    // If Hero3D causes an error, this effect will still run
+    // and we can catch unhandled errors from the window
+    const handleError = () => {
+      setShowHero3D(false);
+      console.log("Disabled 3D hero due to rendering issues");
+    };
+    
+    window.addEventListener('error', handleError);
+    
+    // Set a fallback timeout to disable 3D hero if it takes too long
+    const timeoutId = setTimeout(() => {
+      // Check if we have any error in the console related to Hero3D
+      const consoleErrors = document.querySelectorAll('.error-message');
+      if (consoleErrors.length > 0) {
+        setShowHero3D(false);
+      }
+    }, 3000);
+    
+    return () => {
+      window.removeEventListener('error', handleError);
+      clearTimeout(timeoutId);
+    };
+  }, []);
+
   return (
     <div className="relative min-h-screen">
-      <Hero3D />
+      {showHero3D && <Hero3D />}
       
       <section className="relative pt-40 pb-20 md:pt-48 md:pb-24 px-4">
         <div className="container max-w-6xl mx-auto">
