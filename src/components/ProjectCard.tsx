@@ -23,12 +23,18 @@ const ProjectCard = ({
   liveLink, 
   index 
 }: ProjectCardProps) => {
+  
+  const handleLinkClick = (e: React.MouseEvent<HTMLAnchorElement>, url: string) => {
+    e.stopPropagation(); // Prevent navigation to project detail page
+    window.open(url, '_blank', 'noopener,noreferrer');
+  };
+  
   return (
     <motion.div
       initial={{ opacity: 0, y: 50 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.5, delay: index * 0.1 }}
-      className="project-card glass-card overflow-hidden"
+      className="project-card glass-card overflow-hidden cursor-pointer hover:shadow-lg transition-shadow duration-300"
     >
       <div className="aspect-video overflow-hidden">
         <img 
@@ -44,8 +50,7 @@ const ProjectCard = ({
             {github && (
               <a 
                 href={github} 
-                target="_blank" 
-                rel="noopener noreferrer"
+                onClick={(e) => handleLinkClick(e, github)}
                 className="text-muted-foreground hover:text-primary transition-colors duration-200"
                 aria-label={`View ${title} code on GitHub`}
               >
@@ -55,8 +60,7 @@ const ProjectCard = ({
             {liveLink && (
               <a 
                 href={liveLink} 
-                target="_blank" 
-                rel="noopener noreferrer"
+                onClick={(e) => handleLinkClick(e, liveLink)}
                 className="text-muted-foreground hover:text-primary transition-colors duration-200"
                 aria-label={`Visit ${title} live site`}
               >
