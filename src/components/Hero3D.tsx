@@ -8,8 +8,8 @@ const Hero3D = () => {
   const rendererRef = useRef<THREE.WebGLRenderer | null>(null);
   const sceneRef = useRef<THREE.Scene | null>(null);
   const cameraRef = useRef<THREE.PerspectiveCamera | null>(null);
-  const spheresRef = useRef<THREE.Mesh[]>([]);
-  const linesRef = useRef<THREE.Line[]>([]);
+  const nodesRef = useRef<THREE.Mesh[]>([]);
+  const connectionsRef = useRef<THREE.Line[]>([]);
   const frameIdRef = useRef<number | null>(null);
 
   useEffect(() => {
@@ -48,153 +48,196 @@ const Hero3D = () => {
     directionalLight.position.set(10, 10, 10);
     scene.add(directionalLight);
 
-    // Create nodes (spheres)
-    const sphereGeometry = new THREE.SphereGeometry(0.2, 32, 32);
-    const nodeCount = 24;
-    const nodes = [];
-
-    // Create node materials with different colors
-    const colors = [
-      new THREE.Color(0x1E90FF), // Blue
-      new THREE.Color(0x4169E1), // Royal Blue
-      new THREE.Color(0x6495ED), // Cornflower Blue
-      new THREE.Color(0x7EB0FF)  // Light Blue
-    ];
-
-    // Create node positions within a 3D space
-    for (let i = 0; i < nodeCount; i++) {
-      const xRange = 14;
-      const yRange = 8;
-      const zRange = 8;
+    // Create web tech elements
+    const createTechElements = () => {
+      const grid = [];
+      const gridSize = 4;
+      const spacing = 3;
       
-      const x = (Math.random() - 0.5) * xRange;
-      const y = (Math.random() - 0.5) * yRange;
-      const z = (Math.random() - 0.5) * zRange;
-      
-      // Create sphere with random color
-      const colorIndex = Math.floor(Math.random() * colors.length);
-      const material = new THREE.MeshStandardMaterial({
-        color: colors[colorIndex],
-        emissive: colors[colorIndex],
-        emissiveIntensity: 0.2,
+      // Materials for different tech categories
+      const materialFrontend = new THREE.MeshStandardMaterial({
+        color: 0x3498db, // Blue for frontend
         metalness: 0.7,
-        roughness: 0.2
+        roughness: 0.2,
+        emissive: 0x3498db,
+        emissiveIntensity: 0.2
       });
       
-      const sphere = new THREE.Mesh(sphereGeometry, material);
-      sphere.position.set(x, y, z);
-      
-      // Add random velocity for animation
-      (sphere as any).velocity = {
-        x: (Math.random() - 0.5) * 0.01,
-        y: (Math.random() - 0.5) * 0.01,
-        z: (Math.random() - 0.5) * 0.01
-      };
-      
-      scene.add(sphere);
-      nodes.push({
-        mesh: sphere,
-        originalPos: { x, y, z }
+      const materialBackend = new THREE.MeshStandardMaterial({
+        color: 0x9b59b6, // Purple for backend
+        metalness: 0.7,
+        roughness: 0.2,
+        emissive: 0x9b59b6,
+        emissiveIntensity: 0.2
       });
-      spheresRef.current.push(sphere);
-    }
-
-    // Connect nodes with lines if they're close enough
-    const lineMaterial = new THREE.LineBasicMaterial({
-      color: 0x1E90FF,
-      opacity: 0.2,
-      transparent: true
-    });
-
-    for (let i = 0; i < nodes.length; i++) {
-      for (let j = i + 1; j < nodes.length; j++) {
-        const nodeA = nodes[i].mesh;
-        const nodeB = nodes[j].mesh;
-        
-        // Calculate distance between nodes
-        const distance = nodeA.position.distanceTo(nodeB.position);
-        
-        // Connect if nodes are within range
-        if (distance < 5) {
-          const lineGeometry = new THREE.BufferGeometry().setFromPoints([
-            nodeA.position,
-            nodeB.position
-          ]);
-          
-          const line = new THREE.Line(lineGeometry, lineMaterial);
-          scene.add(line);
-          linesRef.current.push(line);
-          
-          // Store connection info
-          (line as any).connects = { a: nodeA, b: nodeB };
+      
+      const materialTools = new THREE.MeshStandardMaterial({
+        color: 0x2ecc71, // Green for tools
+        metalness: 0.7,
+        roughness: 0.2,
+        emissive: 0x2ecc71,
+        emissiveIntensity: 0.2
+      });
+      
+      // Create different shapes for different tech categories
+      const cubeGeometry = new THREE.BoxGeometry(0.8, 0.8, 0.8); // Frontend: cubes
+      const sphereGeometry = new THREE.SphereGeometry(0.5, 32, 32); // Backend: spheres
+      const octaGeometry = new THREE.OctahedronGeometry(0.6); // Tools: octahedrons
+      
+      // Create grid of elements
+      for (let x = -gridSize; x <= gridSize; x++) {
+        for (let y = -gridSize; y <= gridSize; y++) {
+          for (let z = -gridSize; z <= gridSize; z++) {
+            // Skip some positions to make it less dense
+            if (Math.random() > 0.8) {
+              const position = new THREE.Vector3(
+                x * spacing, 
+                y * spacing, 
+                z * spacing
+              );
+              
+              // Only create elements within a spherical boundary
+              if (position.length() < gridSize * spacing * 0.7) {
+                // Determine tech category based on position
+                let geometry, material;
+                
+                // Frontend (top)
+                if (y > 0) {
+                  geometry = cubeGeometry;
+                  material = materialFrontend;
+                } 
+                // Backend (bottom)
+                else if (y < 0) {
+                  geometry = sphereGeometry;
+                  material = materialBackend;
+                } 
+                // Tools (middle)
+                else {
+                  geometry = octaGeometry;
+                  material = materialTools;
+                }
+                
+                const element = new THREE.Mesh(geometry, material);
+                element.position.copy(position);
+                
+                // Add random rotation and movement
+                (element as any).rotation = {
+                  x: Math.random() * 0.01,
+                  y: Math.random() * 0.01,
+                  z: Math.random() * 0.01
+                };
+                
+                (element as any).oscillation = {
+                  x: Math.random() * 0.02 - 0.01,
+                  y: Math.random() * 0.02 - 0.01,
+                  z: Math.random() * 0.02 - 0.01,
+                  phase: Math.random() * Math.PI * 2
+                };
+                
+                scene.add(element);
+                nodesRef.current.push(element);
+                grid.push({ element, position: position.clone() });
+              }
+            }
+          }
         }
       }
-    }
+      
+      // Connect some elements with lines
+      const lineMaterial = new THREE.LineBasicMaterial({ 
+        color: 0xffffff, 
+        transparent: true, 
+        opacity: 0.2 
+      });
+      
+      for (let i = 0; i < grid.length; i++) {
+        for (let j = i + 1; j < grid.length; j++) {
+          const a = grid[i];
+          const b = grid[j];
+          
+          const distance = a.position.distanceTo(b.position);
+          
+          // Connect if close enough
+          if (distance < spacing * 1.5) {
+            const lineGeometry = new THREE.BufferGeometry().setFromPoints([
+              a.position,
+              b.position
+            ]);
+            
+            const line = new THREE.Line(lineGeometry, lineMaterial);
+            scene.add(line);
+            connectionsRef.current.push(line);
+            
+            // Store connection information
+            (line as any).connects = { a: a.element, b: b.element };
+          }
+        }
+      }
+    };
+    
+    createTechElements();
 
     // Animation loop
     const animate = () => {
-      // Move spheres
-      spheresRef.current.forEach((sphere, index) => {
-        // Move based on velocity
-        sphere.position.x += (sphere as any).velocity.x;
-        sphere.position.y += (sphere as any).velocity.y;
-        sphere.position.z += (sphere as any).velocity.z;
+      const time = Date.now() * 0.001;
+      
+      // Animate tech elements
+      nodesRef.current.forEach(element => {
+        // Rotate each element
+        element.rotation.x += (element as any).rotation.x;
+        element.rotation.y += (element as any).rotation.y;
+        element.rotation.z += (element as any).rotation.z;
         
-        // Boundary check and reverse direction if needed
-        const bounds = { x: 7, y: 4, z: 4 };
-        ['x', 'y', 'z'].forEach(axis => {
-          if (Math.abs(sphere.position[axis]) > bounds[axis]) {
-            (sphere as any).velocity[axis] *= -1;
-          }
-        });
+        // Add oscillating movement
+        const osc = (element as any).oscillation;
+        element.position.x += Math.sin(time + osc.phase) * osc.x;
+        element.position.y += Math.cos(time + osc.phase) * osc.y;
+        element.position.z += Math.sin(time + osc.phase * 2) * osc.z;
       });
       
-      // Update connecting lines
-      linesRef.current.forEach(line => {
+      // Update connections
+      connectionsRef.current.forEach(line => {
         const { a, b } = (line as any).connects;
-        const points = [a.position, b.position];
-        line.geometry.setFromPoints(points);
-        
-        // Update line opacity based on distance
-        const distance = a.position.distanceTo(b.position);
-        const maxDistance = 5;
-        const opacity = Math.max(0, 1 - distance / maxDistance) * 0.4;
-        (line.material as THREE.LineBasicMaterial).opacity = opacity;
+        const lineGeometry = new THREE.BufferGeometry().setFromPoints([
+          a.position,
+          b.position
+        ]);
+        line.geometry.dispose();
+        line.geometry = lineGeometry;
       });
       
-      // Rotate entire scene slightly
+      // Slowly rotate entire scene
       scene.rotation.y += 0.001;
-      scene.rotation.x += 0.0005;
-
+      
       renderer.render(scene, camera);
       frameIdRef.current = requestAnimationFrame(animate);
     };
 
     animate();
     
-    // Mouse move effect
+    // Add interactive camera movement
     const handleMouseMove = (event: MouseEvent) => {
-      // Convert mouse position to normalized device coordinates (-1 to +1)
+      if (!cameraRef.current) return;
+      
+      // Calculate normalized mouse position
       const mouseX = (event.clientX / window.innerWidth) * 2 - 1;
       const mouseY = -(event.clientY / window.innerHeight) * 2 + 1;
       
-      // Subtle camera movement based on mouse position
-      if (cameraRef.current) {
-        cameraRef.current.position.x = mouseX * 2;
-        cameraRef.current.position.y = mouseY * 1;
-        cameraRef.current.lookAt(0, 0, 0);
-      }
+      // Move camera slightly based on mouse position
+      cameraRef.current.position.x = mouseX * 2;
+      cameraRef.current.position.y = mouseY * 1;
+      cameraRef.current.lookAt(0, 0, 0);
     };
     
     window.addEventListener('mousemove', handleMouseMove);
     
     // Handle window resize
     const handleResize = () => {
-      if (cameraRef.current && rendererRef.current) {
-        cameraRef.current.aspect = window.innerWidth / window.innerHeight;
-        cameraRef.current.updateProjectionMatrix();
-        rendererRef.current.setSize(window.innerWidth, window.innerHeight);
-      }
+      if (!cameraRef.current || !rendererRef.current) return;
+      
+      cameraRef.current.aspect = window.innerWidth / window.innerHeight;
+      cameraRef.current.updateProjectionMatrix();
+      rendererRef.current.setSize(window.innerWidth, window.innerHeight);
     };
     
     window.addEventListener('resize', handleResize);
@@ -213,12 +256,12 @@ const Hero3D = () => {
       }
       
       // Dispose geometries and materials
-      spheresRef.current.forEach(sphere => {
-        sphere.geometry.dispose();
-        (sphere.material as THREE.Material).dispose();
+      nodesRef.current.forEach(node => {
+        node.geometry.dispose();
+        (node.material as THREE.Material).dispose();
       });
       
-      linesRef.current.forEach(line => {
+      connectionsRef.current.forEach(line => {
         line.geometry.dispose();
         (line.material as THREE.Material).dispose();
       });
