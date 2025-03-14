@@ -17,36 +17,36 @@ import {
 
 const Skills = () => {
   const frontendSkills = [
-    { name: 'React', level: 5, color: 'blue', icon: <Code /> },
-    { name: 'TypeScript', level: 5, color: 'blue', icon: <Code /> },
-    { name: 'JavaScript', level: 5, color: 'blue', icon: <Code /> },
-    { name: 'HTML5/CSS3', level: 5, color: 'blue', icon: <Layout /> },
-    { name: 'Redux', level: 4, color: 'blue', icon: <Box /> },
-    { name: 'Tailwind CSS', level: 4, color: 'blue', icon: <Layout /> },
-    { name: 'Next.js', level: 4, color: 'blue', icon: <Code /> },
-    { name: 'Jest/Testing Library', level: 3, color: 'blue', icon: <Terminal /> },
+    { name: 'React', level: 5, color: 'blue' as const, icon: <Code /> },
+    { name: 'TypeScript', level: 5, color: 'blue' as const, icon: <Code /> },
+    { name: 'JavaScript', level: 5, color: 'blue' as const, icon: <Code /> },
+    { name: 'HTML5/CSS3', level: 5, color: 'blue' as const, icon: <Layout /> },
+    { name: 'Redux', level: 4, color: 'blue' as const, icon: <Box /> },
+    { name: 'Tailwind CSS', level: 4, color: 'blue' as const, icon: <Layout /> },
+    { name: 'Next.js', level: 4, color: 'blue' as const, icon: <Code /> },
+    { name: 'Jest/Testing Library', level: 3, color: 'blue' as const, icon: <Terminal /> },
   ];
 
   const backendSkills = [
-    { name: 'C#', level: 5, color: 'purple', icon: <Code /> },
-    { name: '.NET Core', level: 5, color: 'purple', icon: <Server /> },
-    { name: 'ASP.NET MVC', level: 5, color: 'purple', icon: <Server /> },
-    { name: 'Entity Framework', level: 4, color: 'purple', icon: <Database /> },
-    { name: 'Web API', level: 4, color: 'purple', icon: <Server /> },
-    { name: 'SQL Server', level: 4, color: 'purple', icon: <Database /> },
-    { name: 'Azure', level: 3, color: 'purple', icon: <Cloud /> },
-    { name: 'Microservices', level: 3, color: 'purple', icon: <Box /> },
+    { name: 'C#', level: 5, color: 'purple' as const, icon: <Code /> },
+    { name: '.NET Core', level: 5, color: 'purple' as const, icon: <Server /> },
+    { name: 'ASP.NET MVC', level: 5, color: 'purple' as const, icon: <Server /> },
+    { name: 'Entity Framework', level: 4, color: 'purple' as const, icon: <Database /> },
+    { name: 'Web API', level: 4, color: 'purple' as const, icon: <Server /> },
+    { name: 'SQL Server', level: 4, color: 'purple' as const, icon: <Database /> },
+    { name: 'Azure', level: 3, color: 'purple' as const, icon: <Cloud /> },
+    { name: 'Microservices', level: 3, color: 'purple' as const, icon: <Box /> },
   ];
 
   const otherSkills = [
-    { name: 'Git/GitHub', level: 5, color: 'green', icon: <GitBranch /> },
-    { name: 'Docker', level: 4, color: 'green', icon: <Box /> },
-    { name: 'CI/CD', level: 4, color: 'green', icon: <Wrench /> },
-    { name: 'Agile/Scrum', level: 4, color: 'green', icon: <Terminal /> },
-    { name: 'System Design', level: 3, color: 'green', icon: <Monitor /> },
-    { name: 'REST APIs', level: 5, color: 'green', icon: <Server /> },
-    { name: 'GraphQL', level: 3, color: 'green', icon: <Database /> },
-    { name: 'Performance Optimization', level: 4, color: 'green', icon: <Wrench /> },
+    { name: 'Git/GitHub', level: 5, color: 'green' as const, icon: <GitBranch /> },
+    { name: 'Docker', level: 4, color: 'green' as const, icon: <Box /> },
+    { name: 'CI/CD', level: 4, color: 'green' as const, icon: <Wrench /> },
+    { name: 'Agile/Scrum', level: 4, color: 'green' as const, icon: <Terminal /> },
+    { name: 'System Design', level: 3, color: 'green' as const, icon: <Monitor /> },
+    { name: 'REST APIs', level: 5, color: 'green' as const, icon: <Server /> },
+    { name: 'GraphQL', level: 3, color: 'green' as const, icon: <Database /> },
+    { name: 'Performance Optimization', level: 4, color: 'green' as const, icon: <Wrench /> },
   ];
 
   return (
