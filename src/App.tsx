@@ -5,7 +5,10 @@ import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { AnimatePresence } from "framer-motion";
-import Layout from "./components/Layout";
+import { ThemeProvider } from "./components/ThemeProvider";
+import { ThemeToggle } from "./components/ThemeToggle";
+import { NavBar } from "./components/ui/tubelight-navbar";
+import { Home, User, Briefcase, Cpu } from 'lucide-react';
 import SmoothScroll from "./components/SmoothScroll";
 import Index from "./pages/Index";
 import About from "./pages/About";
@@ -16,14 +19,23 @@ import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
 
+const navItems = [
+  { name: 'Home', url: '/', icon: Home },
+  { name: 'About', url: '/about', icon: User },
+  { name: 'Projects', url: '/projects', icon: Briefcase },
+  { name: 'Skills', url: '/skills', icon: Cpu }
+];
+
 const App = () => (
   <QueryClientProvider client={queryClient}>
-    <TooltipProvider>
-      <Toaster />
-      <Sonner />
-      <BrowserRouter>
-        <SmoothScroll>
-          <Layout>
+    <ThemeProvider>
+      <TooltipProvider>
+        <Toaster />
+        <Sonner />
+        <BrowserRouter>
+          <SmoothScroll>
+            <ThemeToggle />
+            <NavBar items={navItems} />
             <AnimatePresence mode="wait">
               <Routes>
                 <Route path="/" element={<Index />} />
@@ -34,10 +46,10 @@ const App = () => (
                 <Route path="*" element={<NotFound />} />
               </Routes>
             </AnimatePresence>
-          </Layout>
-        </SmoothScroll>
-      </BrowserRouter>
-    </TooltipProvider>
+          </SmoothScroll>
+        </BrowserRouter>
+      </TooltipProvider>
+    </ThemeProvider>
   </QueryClientProvider>
 );
 
