@@ -43,7 +43,7 @@ const Layout = ({ children }: LayoutProps) => {
       </motion.main>
       <footer className="p-6 text-center text-muted-foreground mt-auto">
         <div className="container max-w-6xl mx-auto">
-          <p>© {new Date().getFullYear()} • Designed & Built with Precision</p>
+          <p>© {new Date().getFullYear()} • Designed & Developed by Your Name</p>
         </div>
       </footer>
     </div>
