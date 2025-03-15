@@ -21,35 +21,35 @@ const Skills = () => {
   
   const frontendSkills = [
     { name: 'React', level: 5, color: 'blue' as SkillColor, icon: <Code /> },
-    { name: 'TypeScript', level: 5, color: 'blue' as SkillColor, icon: <Code /> },
+    { name: 'Angular.js', level: 5, color: 'blue' as SkillColor, icon: <Code /> },
     { name: 'JavaScript', level: 5, color: 'blue' as SkillColor, icon: <Code /> },
     { name: 'HTML5/CSS3', level: 5, color: 'blue' as SkillColor, icon: <Layout /> },
-    { name: 'Redux', level: 4, color: 'blue' as SkillColor, icon: <Box /> },
-    { name: 'Tailwind CSS', level: 4, color: 'blue' as SkillColor, icon: <Layout /> },
     { name: 'Next.js', level: 4, color: 'blue' as SkillColor, icon: <Code /> },
-    { name: 'Jest/Testing Library', level: 3, color: 'blue' as SkillColor, icon: <Terminal /> },
+    { name: 'Express.js', level: 4, color: 'blue' as SkillColor, icon: <Code /> },
+    { name: 'Bootstrap', level: 4, color: 'blue' as SkillColor, icon: <Layout /> },
+    { name: 'SCSS/SASS', level: 3, color: 'blue' as SkillColor, icon: <Layout /> },
   ];
 
   const backendSkills = [
-    { name: 'C#', level: 5, color: 'purple' as SkillColor, icon: <Code /> },
-    { name: '.NET Core', level: 5, color: 'purple' as SkillColor, icon: <Server /> },
     { name: 'ASP.NET MVC', level: 5, color: 'purple' as SkillColor, icon: <Server /> },
+    { name: 'Node.js', level: 4, color: 'purple' as SkillColor, icon: <Server /> },
+    { name: 'Flask', level: 4, color: 'purple' as SkillColor, icon: <Server /> },
+    { name: 'Django', level: 4, color: 'purple' as SkillColor, icon: <Server /> },
     { name: 'Entity Framework', level: 4, color: 'purple' as SkillColor, icon: <Database /> },
-    { name: 'Web API', level: 4, color: 'purple' as SkillColor, icon: <Server /> },
-    { name: 'SQL Server', level: 4, color: 'purple' as SkillColor, icon: <Database /> },
-    { name: 'Azure', level: 3, color: 'purple' as SkillColor, icon: <Cloud /> },
-    { name: 'Microservices', level: 3, color: 'purple' as SkillColor, icon: <Box /> },
+    { name: 'MS SQL Server', level: 4, color: 'purple' as SkillColor, icon: <Database /> },
+    { name: 'MongoDB', level: 4, color: 'purple' as SkillColor, icon: <Database /> },
+    { name: 'MySQL', level: 3, color: 'purple' as SkillColor, icon: <Database /> },
   ];
 
   const otherSkills = [
     { name: 'Git/GitHub', level: 5, color: 'green' as SkillColor, icon: <GitBranch /> },
-    { name: 'Docker', level: 4, color: 'green' as SkillColor, icon: <Box /> },
-    { name: 'CI/CD', level: 4, color: 'green' as SkillColor, icon: <Wrench /> },
-    { name: 'Agile/Scrum', level: 4, color: 'green' as SkillColor, icon: <Terminal /> },
-    { name: 'System Design', level: 3, color: 'green' as SkillColor, icon: <Monitor /> },
-    { name: 'REST APIs', level: 5, color: 'green' as SkillColor, icon: <Server /> },
-    { name: 'GraphQL', level: 3, color: 'green' as SkillColor, icon: <Database /> },
-    { name: 'Performance Optimization', level: 4, color: 'green' as SkillColor, icon: <Wrench /> },
+    { name: 'PostgreSQL', level: 4, color: 'green' as SkillColor, icon: <Database /> },
+    { name: 'RESTful APIs', level: 4, color: 'green' as SkillColor, icon: <Server /> },
+    { name: 'SSMS Database', level: 4, color: 'green' as SkillColor, icon: <Database /> },
+    { name: 'IIS', level: 3, color: 'green' as SkillColor, icon: <Server /> },
+    { name: 'JWT Authentication', level: 4, color: 'green' as SkillColor, icon: <Wrench /> },
+    { name: 'Figma', level: 3, color: 'green' as SkillColor, icon: <Layout /> },
+    { name: 'Redux', level: 3, color: 'green' as SkillColor, icon: <Box /> },
   ];
 
   return (

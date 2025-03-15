@@ -2,7 +2,7 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
-import { Calendar, Code, Download, MapPin, Mail, Github, Linkedin } from 'lucide-react';
+import { Calendar, Code, Download, MapPin, Mail, Github, Linkedin, GraduationCap, Briefcase } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 
 const About = () => {
@@ -33,8 +33,8 @@ const About = () => {
           >
             <div className="bg-accent rounded-2xl overflow-hidden mb-6">
               <img 
-                src="https://images.unsplash.com/photo-1580927752452-89d86da3fa0a?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1650&q=80"
-                alt="Developer portrait"
+                src="public/lovable-uploads/818ea380-a648-4577-b206-b53ec15db6b6.png"
+                alt="Hardik Tyagi portrait"
                 className="w-full aspect-[4/5] object-cover"
               />
             </div>
@@ -47,7 +47,7 @@ const About = () => {
                   <MapPin className="h-5 w-5 text-primary mt-0.5" />
                   <div>
                     <p className="font-medium">Location</p>
-                    <p className="text-muted-foreground">San Francisco, California</p>
+                    <p className="text-muted-foreground">Sec-55, Faridabad</p>
                   </div>
                 </div>
                 
@@ -55,8 +55,8 @@ const About = () => {
                   <Mail className="h-5 w-5 text-primary mt-0.5" />
                   <div>
                     <p className="font-medium">Email</p>
-                    <a href="mailto:contact@example.com" className="text-primary hover:underline">
-                      contact@example.com
+                    <a href="mailto:hardiktyagi007@gmail.com" className="text-primary hover:underline">
+                      hardiktyagi007@gmail.com
                     </a>
                   </div>
                 </div>
@@ -65,27 +65,27 @@ const About = () => {
                   <Calendar className="h-5 w-5 text-primary mt-0.5" />
                   <div>
                     <p className="font-medium">Experience</p>
-                    <p className="text-muted-foreground">7+ Years</p>
+                    <p className="text-muted-foreground">2+ Years</p>
                   </div>
                 </div>
               </div>
               
               <div className="mt-6 flex space-x-4">
                 <a 
-                  href="https://github.com" 
-                  target="_blank" 
-                  rel="noopener noreferrer"
-                  className="h-10 w-10 flex items-center justify-center rounded-full bg-foreground text-background hover:bg-primary transition-colors duration-300"
-                >
-                  <Github size={20} />
-                </a>
-                <a 
-                  href="https://linkedin.com" 
+                  href="http://www.linkedin.com/in/hardiktyagi2503" 
                   target="_blank" 
                   rel="noopener noreferrer"
                   className="h-10 w-10 flex items-center justify-center rounded-full bg-foreground text-background hover:bg-primary transition-colors duration-300"
                 >
                   <Linkedin size={20} />
+                </a>
+                <a 
+                  href="https://github.com/CodeHard25" 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  className="h-10 w-10 flex items-center justify-center rounded-full bg-foreground text-background hover:bg-primary transition-colors duration-300"
+                >
+                  <Github size={20} />
                 </a>
               </div>
               
@@ -107,71 +107,82 @@ const About = () => {
             
             <div className="prose prose-lg max-w-none mb-10">
               <p>
-                I specialize in building modern web applications using .NET and React technologies. 
-                With a strong foundation in both backend and frontend development, I create scalable, 
-                efficient, and user-friendly solutions for complex problems.
+                Dynamic Full Stack Developer with a proven track record at PROIND BUSINESS SOLUTIONS, 
+                enhancing user experiences and optimizing backend processes. Expert in AngularJS, React, 
+                and cloud services, with a knack for efficient database management and innovative problem-solving.
               </p>
               
               <p>
-                My journey in software development began at a young age with a curiosity about how 
-                things work. This led me to pursue a degree in Computer Science, where I honed my 
-                problem-solving skills and developed a passion for clean, maintainable code.
+                Demonstrates exceptional teamwork and technical prowess, significantly improving project outcomes. 
+                Focused on creating modern, responsive, and user-friendly web applications with clean code and 
+                best practices.
               </p>
+            </div>
+
+            <div className="glass-card p-6 mb-8">
+              <div className="flex items-center mb-4">
+                <GraduationCap className="h-6 w-6 text-primary mr-2" />
+                <h3 className="text-xl font-semibold">Education</h3>
+              </div>
               
-              <p>
-                Over the years, I've worked with various technologies and frameworks, always 
-                seeking to expand my knowledge and stay at the forefront of industry trends. My 
-                experience spans from working with large enterprise applications to developing 
-                innovative startups from the ground up.
-              </p>
-              
-              <p>
-                When I'm not coding, you might find me exploring new hiking trails, reading about 
-                emerging technologies, or contributing to open-source projects. I believe in 
-                continuous learning and giving back to the developer community.
-              </p>
+              <div className="space-y-4">
+                <div>
+                  <div className="flex justify-between items-center">
+                    <h4 className="font-medium">Swami Keshvanand Institute of Tech.</h4>
+                    <span className="text-sm text-muted-foreground">2019-2023</span>
+                  </div>
+                  <p className="text-muted-foreground">Bachelor of Technology (ECE)</p>
+                  <p>CGPA: 8.6</p>
+                </div>
+                
+                <div>
+                  <div className="flex justify-between items-center">
+                    <h4 className="font-medium">Vidya Mandir Public School</h4>
+                    <span className="text-sm text-muted-foreground">2015-2018</span>
+                  </div>
+                  <p className="text-muted-foreground">General Science</p>
+                  <p>Percentage in 12th: 81%</p>
+                  <p>CGPA in 10th: 9.2</p>
+                </div>
+              </div>
             </div>
             
             <div className="glass-card p-6 mb-8">
-              <h3 className="text-xl font-semibold mb-4">My Approach to Development</h3>
+              <div className="flex items-center mb-4">
+                <Briefcase className="h-6 w-6 text-primary mr-2" />
+                <h3 className="text-xl font-semibold">Work Experience</h3>
+              </div>
               
-              <ul className="space-y-3">
-                <li className="flex items-start space-x-3">
-                  <div className="h-6 w-6 rounded-full bg-blue-100 text-blue-600 flex items-center justify-center mt-0.5">
-                    <Code size={14} />
+              <div className="space-y-6">
+                <div>
+                  <div className="flex justify-between items-center">
+                    <h4 className="font-medium">Proind Business Solutions Pvt. Ltd.</h4>
+                    <span className="text-sm text-muted-foreground">Jan 2024 - Present</span>
                   </div>
-                  <div>
-                    <p className="font-medium">Clean Code</p>
-                    <p className="text-muted-foreground">
-                      I write maintainable, well-documented code with a focus on readability and best practices.
-                    </p>
-                  </div>
-                </li>
+                  <p className="text-primary">Associate Full Stack Developer</p>
+                  <ul className="list-disc list-inside mt-2 text-muted-foreground">
+                    <li>Managed the frontend and backend of a compliance controller tool using Angular JS, SSMS and Internet Information Services</li>
+                    <li>Scaling up the backend API to handle multiple request</li>
+                    <li>Design of data model for compliance website that captures different user events visiting the compliance portal</li>
+                    <li>Integration of alerting systems using Email and SMS push notifications</li>
+                    <li>Optimisation & debugging using ASP.NET and MS SQL to reduce latency</li>
+                  </ul>
+                </div>
                 
-                <li className="flex items-start space-x-3">
-                  <div className="h-6 w-6 rounded-full bg-purple-100 text-purple-600 flex items-center justify-center mt-0.5">
-                    <Code size={14} />
+                <div>
+                  <div className="flex justify-between items-center">
+                    <h4 className="font-medium">Samyak Infotech Private Limited</h4>
+                    <span className="text-sm text-muted-foreground">Aug 2023 - Dec 2023</span>
                   </div>
-                  <div>
-                    <p className="font-medium">User-Centered Design</p>
-                    <p className="text-muted-foreground">
-                      I believe in understanding user needs and designing intuitive experiences that solve real problems.
-                    </p>
-                  </div>
-                </li>
-                
-                <li className="flex items-start space-x-3">
-                  <div className="h-6 w-6 rounded-full bg-green-100 text-green-600 flex items-center justify-center mt-0.5">
-                    <Code size={14} />
-                  </div>
-                  <div>
-                    <p className="font-medium">Continuous Improvement</p>
-                    <p className="text-muted-foreground">
-                      I'm constantly learning and improving my skills to deliver the best possible solutions.
-                    </p>
-                  </div>
-                </li>
-              </ul>
+                  <p className="text-primary">Full Stack Developer Intern</p>
+                  <ul className="list-disc list-inside mt-2 text-muted-foreground">
+                    <li>Developed and maintained dynamic websites using REACT and EXPRESS JS</li>
+                    <li>Collaborated with senior developers to implement responsive design principles, enhancing user experience</li>
+                    <li>Utilized frontend library like FIGMA, SCSS, REACT and bootstrap to build and optimize UI</li>
+                    <li>Assisted in database management and routing of incoming requests to required view function, including schema design and optimization using MySQL</li>
+                  </ul>
+                </div>
+              </div>
             </div>
             
             <div className="flex flex-col sm:flex-row gap-4">
@@ -180,6 +191,9 @@ const About = () => {
               </Button>
               <Button asChild variant="outline" size="lg" className="rounded-full">
                 <Link to="/skills">Explore My Skills</Link>
+              </Button>
+              <Button asChild variant="secondary" size="lg" className="rounded-full">
+                <Link to="/contact">Get In Touch</Link>
               </Button>
             </div>
           </motion.div>

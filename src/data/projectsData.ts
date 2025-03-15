@@ -1,4 +1,3 @@
-
 export const projectsData = [
   {
     id: 'enterprise-management',
@@ -281,5 +280,123 @@ const styles = StyleSheet.create({
   },
   // More styles...
 });`
+  },
+  {
+    id: 'pawman',
+    title: 'PAWMAN',
+    description: 'A dynamic and responsive e-commerce platform for buying and selling pets and accessories.',
+    image: 'https://images.unsplash.com/photo-1536489953177-f69220b0d6e3?ixlib=rb-1.2.1&auto=format&fit=crop&w=1650&q=80',
+    technologies: ['MongoDB', 'Express.js', 'React.js', 'Node.js', 'JWT', 'Redux'],
+    github: 'https://github.com/CodeHard25/pawman',
+    liveLink: 'https://pawman-ecommerce.com',
+    codeSnippet: `// Authentication Controller with JWT
+const jwt = require('jsonwebtoken');
+const bcrypt = require('bcrypt');
+const User = require('../models/User');
+
+exports.signup = async (req, res) => {
+  try {
+    const { username, email, password } = req.body;
+    
+    // Check if user already exists
+    const existingUser = await User.findOne({ email });
+    if (existingUser) {
+      return res.status(400).json({ message: 'User already exists' });
+    }
+    
+    // Hash password
+    const hashedPassword = await bcrypt.hash(password, 10);
+    
+    // Create new user
+    const newUser = new User({
+      username,
+      email,
+      password: hashedPassword
+    });
+    
+    await newUser.save();
+    
+    // Generate JWT token
+    const token = jwt.sign(
+      { userId: newUser._id }, 
+      process.env.JWT_SECRET,
+      { expiresIn: '24h' }
+    );
+    
+    res.status(201).json({
+      message: 'User created successfully',
+      token,
+      userId: newUser._id
+    });
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+}`
+  },
+  {
+    id: 'legal-repository',
+    title: 'Legal Repository',
+    description: 'Responsive and dynamic web application to provide insights into statutory compliance laws in India.',
+    image: 'https://images.unsplash.com/photo-1589829545856-d10d557cf95f?ixlib=rb-1.2.1&auto=format&fit=crop&w=1650&q=80',
+    technologies: ['ASP.NET MVC', 'Angular', 'SSMS', 'Entity Framework', 'IIS'],
+    github: 'https://github.com/CodeHard25/legal-repository',
+    liveLink: 'https://legal-repository.com',
+    codeSnippet: `// Role-based access control implementation
+public class RoleBasedAccessController : Controller
+{
+    private readonly ILegalActService _legalActService;
+    private readonly IUserService _userService;
+
+    public RoleBasedAccessController(ILegalActService legalActService, IUserService userService)
+    {
+        _legalActService = legalActService;
+        _userService = userService;
+    }
+
+    [Authorize(Roles = "Admin")]
+    public async Task<IActionResult> ManageLegalActs()
+    {
+        var legalActs = await _legalActService.GetAllLegalActsAsync();
+        return View(legalActs);
+    }
+
+    [Authorize(Roles = "Admin,Editor")]
+    public async Task<IActionResult> EditLegalAct(int id)
+    {
+        var legalAct = await _legalActService.GetLegalActByIdAsync(id);
+        if (legalAct == null)
+        {
+            return NotFound();
+        }
+
+        return View(legalAct);
+    }
+
+    [HttpPost]
+    [Authorize(Roles = "Admin,Editor")]
+    [ValidateAntiForgeryToken]
+    public async Task<IActionResult> EditLegalAct(int id, LegalActViewModel model)
+    {
+        if (id != model.Id)
+        {
+            return BadRequest();
+        }
+
+        if (ModelState.IsValid)
+        {
+            try
+            {
+                await _legalActService.UpdateLegalActAsync(model);
+                return RedirectToAction(nameof(ManageLegalActs));
+            }
+            catch (Exception)
+            {
+                // Log error
+                ModelState.AddModelError("", "Unable to save changes.");
+            }
+        }
+        return View(model);
+    }
+}`
   }
 ];
