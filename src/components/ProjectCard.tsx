@@ -28,32 +28,13 @@ const ProjectCard = ({
     e.stopPropagation(); // Prevent navigation to project detail page
     window.open(url, '_blank', 'noopener,noreferrer');
   };
-
-  // Generate a unique color for each card based on index
-  const getBgColor = () => {
-    const colors = [
-      'bg-blue-50 hover:bg-blue-100 border-blue-200',
-      'bg-purple-50 hover:bg-purple-100 border-purple-200',
-      'bg-green-50 hover:bg-green-100 border-green-200',
-      'bg-yellow-50 hover:bg-yellow-100 border-yellow-200',
-      'bg-pink-50 hover:bg-pink-100 border-pink-200',
-      'bg-orange-50 hover:bg-orange-100 border-orange-200',
-      'bg-teal-50 hover:bg-teal-100 border-teal-200',
-      'bg-indigo-50 hover:bg-indigo-100 border-indigo-200',
-    ];
-    return colors[index % colors.length];
-  };
   
   return (
     <motion.div
       initial={{ opacity: 0, y: 50 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.5, delay: index * 0.1 }}
-      className={cn(
-        "overflow-hidden cursor-pointer rounded-2xl border-2 h-full transition-all duration-300",
-        "shadow-md hover:shadow-xl",
-        getBgColor()
-      )}
+      className="project-card glass-card overflow-hidden cursor-pointer hover:shadow-lg transition-shadow duration-300"
     >
       <div className="aspect-video overflow-hidden">
         <img 
@@ -90,27 +71,20 @@ const ProjectCard = ({
         </div>
         <p className="text-muted-foreground mb-4">{description}</p>
         <div className="flex flex-wrap gap-2">
-          {technologies.map((tech, idx) => {
-            const tagColors = [
-              "bg-blue-100 text-blue-700",
-              "bg-purple-100 text-purple-700",
-              "bg-green-100 text-green-700",
-              "bg-amber-100 text-amber-700",
-              "bg-pink-100 text-pink-700",
-              "bg-teal-100 text-teal-700",
-            ];
-            return (
-              <span 
-                key={idx} 
-                className={cn(
-                  "inline-block px-2 py-1 text-xs rounded-md font-medium transition-transform hover:scale-105",
-                  tagColors[idx % tagColors.length]
-                )}
-              >
-                {tech}
-              </span>
-            );
-          })}
+          {technologies.map((tech, idx) => (
+            <span 
+              key={idx} 
+              className={cn(
+                "inline-block px-2 py-1 text-xs rounded-md font-medium",
+                idx % 4 === 0 && "bg-blue-100 text-blue-700",
+                idx % 4 === 1 && "bg-purple-100 text-purple-700",
+                idx % 4 === 2 && "bg-green-100 text-green-700",
+                idx % 4 === 3 && "bg-amber-100 text-amber-700",
+              )}
+            >
+              {tech}
+            </span>
+          ))}
         </div>
       </div>
     </motion.div>
