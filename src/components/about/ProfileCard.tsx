@@ -40,7 +40,10 @@ const ProfileCard = ({ handleDownloadResume }: ProfileCardProps) => {
             <Mail className="h-5 w-5 text-primary mt-0.5" />
             <div>
               <p className="font-medium">Email</p>
-              <a href="mailto:hardiktyagi007@gmail.com" className="text-primary hover:underline">
+              <a 
+                href="mailto:hardiktyagi007@gmail.com" 
+                className="text-primary hover:underline transition-colors duration-200"
+              >
                 hardiktyagi007@gmail.com
               </a>
             </div>
@@ -76,7 +79,7 @@ const ProfileCard = ({ handleDownloadResume }: ProfileCardProps) => {
         
         <div className="mt-6">
           <Button 
-            className="w-full" 
+            className="w-full hover:bg-accent hover:text-accent-foreground" 
             variant="outline"
             onClick={handleDownloadResume}
           >

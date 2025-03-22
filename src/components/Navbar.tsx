@@ -2,13 +2,14 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { motion } from 'framer-motion';
-import { Code, User, Briefcase, Cpu } from 'lucide-react';
+import { Code, User, Briefcase, Cpu, Mail } from 'lucide-react';
 
 const navItems = [
   { path: '/', label: 'Home', icon: <Code className="h-4 w-4" /> },
   { path: '/about', label: 'About', icon: <User className="h-4 w-4" /> },
   { path: '/projects', label: 'Projects', icon: <Briefcase className="h-4 w-4" /> },
   { path: '/skills', label: 'Skills', icon: <Cpu className="h-4 w-4" /> },
+  { path: '/contact', label: 'Contact', icon: <Mail className="h-4 w-4" /> },
 ];
 
 const Navbar = () => {
@@ -68,27 +69,31 @@ const Navbar = () => {
 
           {/* Desktop Navigation */}
           <nav className="hidden md:flex items-center space-x-1">
-            {navItems.map((item) => (
-              <Link
-                key={item.path}
-                to={item.path}
-                className={`px-4 py-2 rounded-md flex items-center space-x-2 transition-colors duration-200 hover:bg-accent ${
-                  location.pathname === item.path
-                    ? 'text-primary font-medium'
-                    : 'text-foreground'
-                }`}
-              >
-                {item.icon}
-                <span>{item.label}</span>
-                {location.pathname === item.path && (
-                  <motion.div
-                    className="absolute bottom-0 left-0 h-0.5 w-full bg-primary"
-                    layoutId="navbar-indicator"
-                    transition={{ type: 'spring', duration: 0.5 }}
-                  />
-                )}
-              </Link>
-            ))}
+            {navItems.map((item) => {
+              const isActive = location.pathname === item.path || 
+                (item.path !== '/' && location.pathname.startsWith(item.path));
+              return (
+                <Link
+                  key={item.path}
+                  to={item.path}
+                  className={`px-4 py-2 rounded-md flex items-center space-x-2 transition-colors duration-200 hover:bg-accent relative ${
+                    isActive
+                      ? 'text-primary font-medium'
+                      : 'text-foreground'
+                  }`}
+                >
+                  {item.icon}
+                  <span>{item.label}</span>
+                  {isActive && (
+                    <motion.div
+                      className="absolute bottom-0 left-0 h-0.5 w-full bg-primary"
+                      layoutId="navbar-indicator"
+                      transition={{ type: 'spring', duration: 0.5 }}
+                    />
+                  )}
+                </Link>
+              );
+            })}
           </nav>
 
           {/* Mobile Menu Button */}
@@ -119,20 +124,24 @@ const Navbar = () => {
         style={{ overflow: 'hidden' }}
       >
         <div className="container max-w-6xl mx-auto px-4 py-4 glass-nav mt-1 rounded-b-xl">
-          {navItems.map((item) => (
-            <Link
-              key={item.path}
-              to={item.path}
-              className={`flex items-center space-x-4 px-4 py-3 rounded-md my-1 ${
-                location.pathname === item.path
-                  ? 'bg-accent text-primary font-medium'
-                  : 'text-foreground'
-              }`}
-            >
-              {item.icon}
-              <span>{item.label}</span>
-            </Link>
-          ))}
+          {navItems.map((item) => {
+            const isActive = location.pathname === item.path || 
+              (item.path !== '/' && location.pathname.startsWith(item.path));
+            return (
+              <Link
+                key={item.path}
+                to={item.path}
+                className={`flex items-center space-x-4 px-4 py-3 rounded-md my-1 transition-colors duration-200 ${
+                  isActive
+                    ? 'bg-accent text-primary font-medium'
+                    : 'text-foreground hover:bg-accent/50'
+                }`}
+              >
+                {item.icon}
+                <span>{item.label}</span>
+              </Link>
+            );
+          })}
         </div>
       </motion.div>
     </header>

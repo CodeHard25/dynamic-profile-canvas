@@ -7,7 +7,7 @@ import ProjectHeader from '@/components/projects/ProjectHeader';
 import ProjectTabs from '@/components/projects/ProjectTabs';
 
 const ProjectDetail = () => {
-  const { projectId } = useParams();
+  const { projectId } = useParams<{ projectId: string }>();
   const project = projectsData.find(p => p.id === projectId);
   
   if (!project) {

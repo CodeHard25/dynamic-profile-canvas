@@ -18,7 +18,9 @@ const ContactInfo = () => {
               <h3 className="font-medium text-lg">Email</h3>
               <a 
                 href="mailto:hardiktyagi007@gmail.com" 
-                className="text-muted-foreground hover:text-primary transition-colors"
+                className="text-muted-foreground hover:text-primary transition-colors duration-200"
+                target="_blank"
+                rel="noopener noreferrer"
               >
                 hardiktyagi007@gmail.com
               </a>
@@ -33,7 +35,7 @@ const ContactInfo = () => {
               <h3 className="font-medium text-lg">Phone</h3>
               <a 
                 href="tel:+919354152107" 
-                className="text-muted-foreground hover:text-primary transition-colors"
+                className="text-muted-foreground hover:text-primary transition-colors duration-200"
               >
                 +91 9354152107
               </a>
@@ -58,7 +60,7 @@ const ContactInfo = () => {
               href="http://www.linkedin.com/in/hardiktyagi2503" 
               target="_blank" 
               rel="noopener noreferrer"
-              className="bg-foreground text-background hover:bg-primary p-3 rounded-full transition-colors"
+              className="bg-foreground text-background hover:bg-primary p-3 rounded-full transition-colors duration-300"
               aria-label="LinkedIn Profile"
             >
               <Linkedin className="h-5 w-5" />
@@ -67,7 +69,7 @@ const ContactInfo = () => {
               href="https://github.com/CodeHard25" 
               target="_blank" 
               rel="noopener noreferrer"
-              className="bg-foreground text-background hover:bg-primary p-3 rounded-full transition-colors"
+              className="bg-foreground text-background hover:bg-primary p-3 rounded-full transition-colors duration-300"
               aria-label="GitHub Profile"
             >
               <Github className="h-5 w-5" />

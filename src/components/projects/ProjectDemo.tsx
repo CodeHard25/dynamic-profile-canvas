@@ -25,8 +25,8 @@ const ProjectDemo = ({ project }: ProjectDemoProps) => {
           {project.liveLink ? (
             <Button 
               size="lg"
-              onClick={() => window.open(project.liveLink, '_blank')}
-              className="gap-2"
+              onClick={() => window.open(project.liveLink, '_blank', 'noopener,noreferrer')}
+              className="gap-2 hover:bg-primary/90 transition-colors duration-300"
             >
               <ExternalLink size={18} /> Launch Live Demo
             </Button>

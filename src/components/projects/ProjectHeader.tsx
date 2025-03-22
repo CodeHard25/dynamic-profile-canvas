@@ -22,7 +22,7 @@ const ProjectHeader = ({ project }: ProjectHeaderProps) => {
     <div className="mb-8">
       <Link 
         to="/projects"
-        className="inline-flex items-center text-sm text-muted-foreground hover:text-primary mb-4"
+        className="inline-flex items-center text-sm text-muted-foreground hover:text-primary mb-4 transition-colors duration-200"
       >
         <ArrowLeft className="mr-1" size={16} /> Back to all projects
       </Link>
@@ -62,16 +62,16 @@ const ProjectHeader = ({ project }: ProjectHeaderProps) => {
               {project.github && (
                 <Button 
                   variant="outline" 
-                  className="gap-2"
-                  onClick={() => window.open(project.github, '_blank')}
+                  className="gap-2 hover:bg-accent hover:text-accent-foreground"
+                  onClick={() => window.open(project.github, '_blank', 'noopener,noreferrer')}
                 >
                   <Github size={18} /> GitHub
                 </Button>
               )}
               {project.liveLink && (
                 <Button 
-                  className="gap-2"
-                  onClick={() => window.open(project.liveLink, '_blank')}
+                  className="gap-2 hover:bg-primary/90"
+                  onClick={() => window.open(project.liveLink, '_blank', 'noopener,noreferrer')}
                 >
                   <ExternalLink size={18} /> Live Demo
                 </Button>

@@ -29,13 +29,13 @@ const AboutHero = () => {
       </div>
 
       <div className="flex flex-col sm:flex-row gap-4">
-        <Button asChild size="lg" className="rounded-full">
+        <Button asChild size="lg" className="rounded-full hover:bg-primary/90 transition-colors duration-300">
           <Link to="/projects">View My Projects</Link>
         </Button>
-        <Button asChild variant="outline" size="lg" className="rounded-full">
+        <Button asChild variant="outline" size="lg" className="rounded-full hover:bg-accent hover:text-accent-foreground transition-colors duration-300">
           <Link to="/skills">Explore My Skills</Link>
         </Button>
-        <Button asChild variant="secondary" size="lg" className="rounded-full">
+        <Button asChild variant="secondary" size="lg" className="rounded-full hover:bg-secondary/80 transition-colors duration-300">
           <Link to="/contact">Get In Touch</Link>
         </Button>
       </div>
