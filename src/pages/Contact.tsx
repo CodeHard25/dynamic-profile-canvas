@@ -175,6 +175,7 @@ const Contact = () => {
                         onChange={handleChange}
                         placeholder="John Doe"
                         required
+                        className="focus:ring-2 focus:ring-primary"
                       />
                     </div>
                     <div className="space-y-2">
@@ -187,6 +188,7 @@ const Contact = () => {
                         onChange={handleChange}
                         placeholder="john@example.com"
                         required
+                        className="focus:ring-2 focus:ring-primary"
                       />
                     </div>
                   </div>
@@ -200,6 +202,7 @@ const Contact = () => {
                       onChange={handleChange}
                       placeholder="How can I help you?"
                       required
+                      className="focus:ring-2 focus:ring-primary"
                     />
                   </div>
                   
@@ -213,12 +216,13 @@ const Contact = () => {
                       placeholder="Your message here..."
                       rows={6}
                       required
+                      className="focus:ring-2 focus:ring-primary"
                     />
                   </div>
                   
                   <Button 
                     type="submit" 
-                    className="w-full" 
+                    className="w-full hover:bg-primary/90 transition-colors font-medium" 
                     disabled={isSubmitting}
                   >
                     {isSubmitting ? (

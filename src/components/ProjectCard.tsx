@@ -25,6 +25,7 @@ const ProjectCard = ({
 }: ProjectCardProps) => {
   
   const handleLinkClick = (e: React.MouseEvent<HTMLAnchorElement>, url: string) => {
+    e.preventDefault();
     e.stopPropagation(); // Prevent navigation to project detail page
     window.open(url, '_blank', 'noopener,noreferrer');
   };
@@ -34,7 +35,8 @@ const ProjectCard = ({
       initial={{ opacity: 0, y: 50 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.5, delay: index * 0.1 }}
-      className="project-card glass-card overflow-hidden cursor-pointer hover:shadow-lg transition-shadow duration-300"
+      className="project-card glass-card overflow-hidden cursor-pointer hover:shadow-xl transition-all duration-300 border border-border/30"
+      whileHover={{ y: -5 }}
     >
       <div className="aspect-video overflow-hidden">
         <img 
@@ -44,9 +46,9 @@ const ProjectCard = ({
         />
       </div>
       <div className="p-6">
-        <div className="flex items-start justify-between">
-          <h3 className="text-xl font-bold mb-2">{title}</h3>
-          <div className="flex space-x-2">
+        <div className="flex items-start justify-between mb-3">
+          <h3 className="text-xl font-bold">{title}</h3>
+          <div className="flex space-x-3">
             {github && (
               <a 
                 href={github} 
@@ -69,13 +71,13 @@ const ProjectCard = ({
             )}
           </div>
         </div>
-        <p className="text-muted-foreground mb-4">{description}</p>
+        <p className="text-muted-foreground mb-4 line-clamp-3">{description}</p>
         <div className="flex flex-wrap gap-2">
           {technologies.map((tech, idx) => (
             <span 
               key={idx} 
               className={cn(
-                "inline-block px-2 py-1 text-xs rounded-md font-medium",
+                "inline-block px-2 py-1 text-xs rounded-md font-medium transition-colors",
                 idx % 4 === 0 && "bg-blue-100 text-blue-700",
                 idx % 4 === 1 && "bg-purple-100 text-purple-700",
                 idx % 4 === 2 && "bg-green-100 text-green-700",

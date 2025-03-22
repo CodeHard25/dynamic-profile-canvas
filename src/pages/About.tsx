@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
@@ -6,6 +5,16 @@ import { Calendar, Code, Download, MapPin, Mail, Github, Linkedin, GraduationCap
 import { Button } from '@/components/ui/button';
 
 const About = () => {
+  const handleDownloadResume = () => {
+    // Create a temporary link
+    const link = document.createElement('a');
+    link.href = '/Hardik_Tyagi_Resume.pdf'; // Update this path to your actual resume PDF
+    link.download = 'Hardik_Tyagi_Resume.pdf';
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+  };
+
   return (
     <div className="min-h-screen pt-24 pb-16">
       <div className="container max-w-6xl mx-auto px-4">
@@ -33,7 +42,7 @@ const About = () => {
           >
             <div className="bg-accent rounded-2xl overflow-hidden mb-6">
               <img 
-                src="public/lovable-uploads/818ea380-a648-4577-b206-b53ec15db6b6.png"
+                src="/lovable-uploads/818ea380-a648-4577-b206-b53ec15db6b6.png"
                 alt="Hardik Tyagi portrait"
                 className="w-full aspect-[4/5] object-cover"
               />
@@ -90,7 +99,11 @@ const About = () => {
               </div>
               
               <div className="mt-6">
-                <Button className="w-full" variant="outline">
+                <Button 
+                  className="w-full" 
+                  variant="outline"
+                  onClick={handleDownloadResume}
+                >
                   <Download className="mr-2 h-4 w-4" /> Download Resume
                 </Button>
               </div>

@@ -56,12 +56,12 @@ const Projects = () => {
           <p className="text-muted-foreground mb-6 max-w-2xl mx-auto">
             I'm always open to discussing new projects, creative ideas, or opportunities to be part of your vision.
           </p>
-          <a 
-            href="mailto:hardiktyagi007@gmail.com" 
+          <Link 
+            to="/contact"
             className="inline-block py-3 px-8 bg-primary text-white rounded-full font-semibold hover:bg-primary/90 transition-colors duration-300"
           >
             Get In Touch
-          </a>
+          </Link>
         </motion.div>
       </div>
     </div>
