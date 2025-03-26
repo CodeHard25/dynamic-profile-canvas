@@ -3,6 +3,7 @@ import React from 'react';
 import { Card, CardContent } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { ExternalLink } from 'lucide-react';
+import { useToast } from "@/components/ui/use-toast";
 
 interface ProjectDemoProps {
   project: {
@@ -12,8 +13,20 @@ interface ProjectDemoProps {
 }
 
 const ProjectDemo = ({ project }: ProjectDemoProps) => {
+  const { toast } = useToast();
+
+  const handleOpenDemo = () => {
+    if (project.liveLink) {
+      window.open(project.liveLink, '_blank', 'noopener,noreferrer');
+      toast({
+        title: "Opening Demo",
+        description: `Launching ${project.title} in a new tab`,
+      });
+    }
+  };
+
   return (
-    <Card>
+    <Card className="hover:shadow-md transition-shadow duration-300">
       <CardContent className="pt-6">
         <h2 className="text-xl font-bold mb-4">Interactive Demo</h2>
         <p className="text-muted-foreground mb-6">
@@ -25,8 +38,8 @@ const ProjectDemo = ({ project }: ProjectDemoProps) => {
           {project.liveLink ? (
             <Button 
               size="lg"
-              onClick={() => window.open(project.liveLink, '_blank', 'noopener,noreferrer')}
-              className="gap-2 hover:bg-primary/90 transition-colors duration-300"
+              onClick={handleOpenDemo}
+              className="gap-2 hover:bg-primary/90 transition-colors duration-300 transform hover:scale-105"
             >
               <ExternalLink size={18} /> Launch Live Demo
             </Button>

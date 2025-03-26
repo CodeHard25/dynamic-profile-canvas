@@ -3,12 +3,31 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import { MapPin, Mail, Calendar, Linkedin, Github, Download } from 'lucide-react';
 import { Button } from '@/components/ui/button';
+import { useToast } from "@/components/ui/use-toast";
 
 interface ProfileCardProps {
   handleDownloadResume: () => void;
 }
 
 const ProfileCard = ({ handleDownloadResume }: ProfileCardProps) => {
+  const { toast } = useToast();
+  
+  const downloadResume = () => {
+    try {
+      handleDownloadResume();
+      toast({
+        title: "Download Started",
+        description: "Your resume is being downloaded",
+      });
+    } catch (error) {
+      toast({
+        variant: "destructive",
+        title: "Download Failed",
+        description: "There was an error downloading the resume. Please try again.",
+      });
+    }
+  };
+  
   return (
     <motion.div 
       initial={{ opacity: 0, x: -30 }}
@@ -21,6 +40,7 @@ const ProfileCard = ({ handleDownloadResume }: ProfileCardProps) => {
           src="/lovable-uploads/818ea380-a648-4577-b206-b53ec15db6b6.png"
           alt="Hardik Tyagi portrait"
           className="w-full aspect-[4/5] object-cover"
+          loading="lazy"
         />
       </div>
       
@@ -81,7 +101,7 @@ const ProfileCard = ({ handleDownloadResume }: ProfileCardProps) => {
           <Button 
             className="w-full hover:bg-accent hover:text-accent-foreground" 
             variant="outline"
-            onClick={handleDownloadResume}
+            onClick={downloadResume}
           >
             <Download className="mr-2 h-4 w-4" /> Download Resume
           </Button>

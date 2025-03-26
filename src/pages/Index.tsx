@@ -1,10 +1,12 @@
 
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, lazy, Suspense } from 'react';
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
-import { ArrowRight, Code, Database, Server } from 'lucide-react';
-import Hero3D from '@/components/Hero3D';
+import { ArrowRight, Code, Database, Server, Terminal, Lightbulb } from 'lucide-react';
 import { Button } from '@/components/ui/button';
+
+// Lazy load the 3D hero component for better initial load time
+const Hero3D = lazy(() => import('@/components/Hero3D'));
 
 const Index = () => {
   const [showHero3D, setShowHero3D] = useState(true);
@@ -36,7 +38,11 @@ const Index = () => {
 
   return (
     <div className="relative min-h-screen">
-      {showHero3D && <Hero3D />}
+      {showHero3D && (
+        <Suspense fallback={<div className="three-canvas-container bg-gradient-to-b from-background to-accent/20"></div>}>
+          <Hero3D />
+        </Suspense>
+      )}
       
       <section className="relative pt-40 pb-20 md:pt-48 md:pb-24 px-4">
         <div className="container max-w-6xl mx-auto">
@@ -50,8 +56,8 @@ const Index = () => {
               Full Stack Developer
             </span>
             <h1 className="text-4xl md:text-6xl font-bold leading-tight md:leading-tight mb-4 animate-fade-up text-balance">
-              Crafting Digital <span className="text-gradient">Experiences</span><br /> 
-              with .NET &amp; React
+              Hi, I'm <span className="text-gradient">Hardik Tyagi</span><br /> 
+              Developer & Problem Solver
             </h1>
             <p className="max-w-3xl mx-auto text-muted-foreground text-lg md:text-xl mb-8 animate-fade-up text-balance">
               Building robust, scalable, and elegant solutions that solve real-world problems 
@@ -70,12 +76,27 @@ const Index = () => {
             </div>
           </motion.div>
           
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mt-20 md:mt-32">
+          <div className="mt-16 mb-20 max-w-3xl mx-auto">
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.7, delay: 0.3 }}
+              className="glass-card p-6 text-center"
+            >
+              <Lightbulb className="h-8 w-8 text-primary mx-auto mb-4" />
+              <h3 className="text-xl font-bold mb-3">My Development Philosophy</h3>
+              <p className="text-muted-foreground">
+                "I believe in crafting digital experiences that not only solve problems efficiently but also delight users with intuitive interfaces. Every line of code I write strives to balance technical excellence with user-centered design. My approach combines the structural discipline of .NET with the creative flexibility of React to build solutions that are both robust and beautiful."
+              </p>
+            </motion.div>
+          </div>
+          
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mt-4">
             <motion.div 
               initial={{ opacity: 0, y: 40 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.7, delay: 0.2 }}
-              className="glass-card p-6 flex flex-col items-center text-center"
+              className="glass-card p-6 flex flex-col items-center text-center hover:translate-y-[-4px] transition-transform duration-300"
             >
               <div className="h-12 w-12 bg-blue-100 text-blue-600 rounded-lg flex items-center justify-center mb-4">
                 <Code size={24} />
@@ -90,7 +111,7 @@ const Index = () => {
               initial={{ opacity: 0, y: 40 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.7, delay: 0.3 }}
-              className="glass-card p-6 flex flex-col items-center text-center"
+              className="glass-card p-6 flex flex-col items-center text-center hover:translate-y-[-4px] transition-transform duration-300"
             >
               <div className="h-12 w-12 bg-purple-100 text-purple-600 rounded-lg flex items-center justify-center mb-4">
                 <Server size={24} />
@@ -105,7 +126,7 @@ const Index = () => {
               initial={{ opacity: 0, y: 40 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.7, delay: 0.4 }}
-              className="glass-card p-6 flex flex-col items-center text-center"
+              className="glass-card p-6 flex flex-col items-center text-center hover:translate-y-[-4px] transition-transform duration-300"
             >
               <div className="h-12 w-12 bg-green-100 text-green-600 rounded-lg flex items-center justify-center mb-4">
                 <Database size={24} />
@@ -116,6 +137,25 @@ const Index = () => {
               </p>
             </motion.div>
           </div>
+          
+          <motion.div
+            initial={{ opacity: 0, y: 40 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.7, delay: 0.5 }}
+            className="mt-20 max-w-3xl mx-auto text-center"
+          >
+            <div className="glass-card p-6">
+              <Terminal className="h-8 w-8 text-primary mx-auto mb-4" />
+              <h3 className="text-xl font-bold mb-3">Tech Stack Highlights</h3>
+              <div className="flex flex-wrap justify-center gap-2 mt-4">
+                {['React', '.NET Core', 'TypeScript', 'C#', 'SQL', 'Tailwind CSS', 'Azure', 'Git', 'Entity Framework'].map((tech, index) => (
+                  <span key={index} className="px-3 py-1 bg-accent text-primary rounded-full text-sm font-medium inline-block">
+                    {tech}
+                  </span>
+                ))}
+              </div>
+            </div>
+          </motion.div>
         </div>
       </section>
     </div>
