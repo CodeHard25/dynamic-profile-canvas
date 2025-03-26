@@ -4,6 +4,9 @@ import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { ArrowRight, Code, Database, Server, Terminal, Lightbulb } from 'lucide-react';
 import { Button } from '@/components/ui/button';
+import TestimonialSection from '@/components/testimonials/TestimonialSection';
+import ServicesSection from '@/components/services/ServicesSection';
+import CallToAction from '@/components/CallToAction';
 
 // Lazy load the 3D hero component for better initial load time
 const Hero3D = lazy(() => import('@/components/Hero3D'));
@@ -86,7 +89,7 @@ const Index = () => {
               <Lightbulb className="h-8 w-8 text-primary mx-auto mb-4" />
               <h3 className="text-xl font-bold mb-3">My Development Philosophy</h3>
               <p className="text-muted-foreground">
-                "I believe in crafting digital experiences that not only solve problems efficiently but also delight users with intuitive interfaces. Every line of code I write strives to balance technical excellence with user-centered design. My approach combines the structural discipline of .NET with the creative flexibility of React to build solutions that are both robust and beautiful."
+                "As a Full Stack Developer, I believe in creating digital experiences that are not only visually appealing but also technically robust. My approach combines strong architecture principles with user-centered design, ensuring applications are both powerful and intuitive. I specialize in bridging the gap between complex business requirements and elegant technical solutions that drive real results for my clients."
               </p>
             </motion.div>
           </div>
@@ -118,7 +121,7 @@ const Index = () => {
               </div>
               <h3 className="text-xl font-semibold mb-2">Backend Development</h3>
               <p className="text-muted-foreground">
-                Building scalable APIs and services with .NET, C#, and enterprise-grade architecture.
+                Building scalable APIs and services with .NET Core, C#, and enterprise-grade architecture.
               </p>
             </motion.div>
             
@@ -158,6 +161,11 @@ const Index = () => {
           </motion.div>
         </div>
       </section>
+      
+      {/* Add the new sections */}
+      <ServicesSection />
+      <TestimonialSection />
+      <CallToAction />
     </div>
   );
 };

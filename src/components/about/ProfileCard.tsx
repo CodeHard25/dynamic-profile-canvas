@@ -3,7 +3,7 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import { MapPin, Mail, Calendar, Linkedin, Github, Download } from 'lucide-react';
 import { Button } from '@/components/ui/button';
-import { useToast } from "@/components/ui/use-toast";
+import { useToast } from "@/hooks/use-toast";
 
 interface ProfileCardProps {
   handleDownloadResume: () => void;
@@ -14,7 +14,15 @@ const ProfileCard = ({ handleDownloadResume }: ProfileCardProps) => {
   
   const downloadResume = () => {
     try {
-      handleDownloadResume();
+      // Create a direct download link to the resume
+      const resumeUrl = '/resume-hardik-tyagi.pdf'; // This should be placed in the public folder
+      const link = document.createElement('a');
+      link.href = resumeUrl;
+      link.setAttribute('download', 'Hardik_Tyagi_Resume.pdf');
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+      
       toast({
         title: "Download Started",
         description: "Your resume is being downloaded",
@@ -99,7 +107,7 @@ const ProfileCard = ({ handleDownloadResume }: ProfileCardProps) => {
         
         <div className="mt-6">
           <Button 
-            className="w-full hover:bg-accent hover:text-accent-foreground" 
+            className="w-full hover:bg-primary hover:text-primary-foreground" 
             variant="outline"
             onClick={downloadResume}
           >
