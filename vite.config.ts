@@ -1,4 +1,3 @@
-
 import { defineConfig, ConfigEnv, PluginOption } from "vite";
 import react from "@vitejs/plugin-react-swc";
 import path from "path";
@@ -24,7 +23,11 @@ export default defineConfig(({ mode }: ConfigEnv) => ({
       output: {
         manualChunks: {
           'vendor': ['react', 'react-dom', 'react-router-dom'],
-          'ui': ['@/components/ui/button', '@/components/ui/toast'], // Specify individual components instead of using glob patterns
+          'ui': [
+            '@/components/ui/button.tsx',  // Explicitly add file components
+            '@/components/ui/toast.tsx',   // Explicitly add file components
+            // Add more components as needed
+          ],
           'animations': ['framer-motion'],
         }
       }
