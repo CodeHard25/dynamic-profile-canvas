@@ -2,7 +2,7 @@
 import { defineConfig, ConfigEnv, PluginOption } from "vite";
 import react from "@vitejs/plugin-react-swc";
 import path from "path";
-import { reactComponentTagger } from "react-component-tagger";
+import { componentTagger } from "lovable-tagger";
 
 // https://vitejs.dev/config/
 export default defineConfig(({ mode }: ConfigEnv) => ({
@@ -12,7 +12,7 @@ export default defineConfig(({ mode }: ConfigEnv) => ({
   },
   plugins: [
     react(),
-    mode === 'development' && reactComponentTagger(),
+    mode === 'development' && componentTagger(),
   ].filter(Boolean) as PluginOption[],
   resolve: {
     alias: {
