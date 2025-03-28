@@ -24,11 +24,12 @@ export default defineConfig(({ mode }: ConfigEnv) => ({
       output: {
         manualChunks: {
           'vendor': ['react', 'react-dom', 'react-router-dom'],
-          'ui': ['@/components/ui'],
+          'ui': ['@/components/ui/**/*.tsx'],
           'animations': ['framer-motion'],
         }
       }
     },
     chunkSizeWarningLimit: 1000,
+    sourcemap: true
   },
 }));
