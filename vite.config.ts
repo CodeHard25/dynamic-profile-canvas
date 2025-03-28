@@ -24,7 +24,7 @@ export default defineConfig(({ mode }: ConfigEnv) => ({
       output: {
         manualChunks: {
           'vendor': ['react', 'react-dom', 'react-router-dom'],
-          'ui': ['@/components/ui/**/*.tsx'],
+          'ui': ['@/components/ui/button', '@/components/ui/toast'], // Specify individual components instead of using glob patterns
           'animations': ['framer-motion'],
         }
       }
